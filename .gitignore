@@ -38,3 +38,8 @@ out/
 
 ### Kotlin ###
 .kotlin
+
+
+# DB
+docker/db/*
+docker/redis/*
