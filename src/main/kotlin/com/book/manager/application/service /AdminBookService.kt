@@ -4,6 +4,7 @@ import com.book.manager.domain.model.Book
 import com.book.manager.domain.repository.BookRepository
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.time.LocalDate
 
 @Service
 class AdminBookService (
@@ -15,5 +16,11 @@ class AdminBookService (
             throw IllegalArgumentException("Book already exists: ${book.id}")
         }
         bookRepository.register(book)
+    }
+
+    @Transactional
+    fun update(bookId: Long, title: String?, author: String?, releaseDate: LocalDate?) {
+        bookRepository.findWithRental(bookId) ?: throw IllegalArgumentException("Book not found: $bookId")
+        bookRepository.update(bookId, title, author, releaseDate)
     }
 }

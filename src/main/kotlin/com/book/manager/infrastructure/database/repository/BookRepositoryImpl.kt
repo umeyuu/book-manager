@@ -9,9 +9,11 @@ import com.book.manager.infrastructure.database.mapper.custom.BookWithRentalMapp
 import com.book.manager.infrastructure.database.mapper.custom.select
 import com.book.manager.infrastructure.database.mapper.custom.selectByPrimaryKey
 import com.book.manager.infrastructure.database.mapper.insert
+import com.book.manager.infrastructure.database.mapper.updateByPrimaryKeySelective
 import com.book.manager.infrastructure.database.record.BookRecord
 import com.book.manager.infrastructure.database.record.custom.BookWithRentalRecord
 import org.springframework.stereotype.Repository
+import java.time.LocalDate
 
 @Suppress("SpringJavaInjectionPointsAutowiringInspection")
 @Repository
@@ -57,4 +59,16 @@ class BookRepositoryImpl (
             releaseDate = book.releaseDate
         )
     }
+
+    override fun update(id: Long, title: String?, author: String?, releaseDate: LocalDate?) {
+        bookMapper.updateByPrimaryKeySelective(
+            BookRecord(
+                id = id,
+                title = title,
+                author = author,
+                releaseDate = releaseDate
+            )
+        )
+    }
+
 }
