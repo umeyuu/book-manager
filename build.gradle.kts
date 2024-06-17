@@ -32,6 +32,8 @@ dependencies {
 	implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.2.1") // 追加
 	implementation("mysql:mysql-connector-java:8.0.23") // 追加
 	mybatisGenerator("org.mybatis.generator:mybatis-generator-core:1.4.0") // 追加
+
+	implementation("org.springframework.boot:spring-boot-starter-security")
 }
 
 kotlin {
