@@ -36,4 +36,16 @@ class RentalService (
 
         rentalRepository.startRental(rental)
     }
+
+    @Transactional
+    fun endRental(bookId: Long, userId: Long){
+        userRepository.find(userId) ?: throw RuntimeException("User not found. userId: $userId")
+
+        val book = bookRepository.findWithRental(bookId) ?: throw RuntimeException("Book not found. bookId: $bookId")
+
+        if (!book.isRental) throw IllegalStateException("The book is not rented. bookId: $bookId")
+        if (book.rental!!.userId != userId) throw IllegalStateException("The book is rented by another user. bookId: $bookId, userId: $userId")
+
+        rentalRepository.endRental(bookId)
+    }
 }
