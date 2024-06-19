@@ -34,6 +34,9 @@ dependencies {
 	mybatisGenerator("org.mybatis.generator:mybatis-generator-core:1.4.0") // 追加
 
 	implementation("org.springframework.boot:spring-boot-starter-security")
+
+	implementation("org.springframework.session:spring-session-data-redis")
+	implementation("redis.clients:jedis")
 }
 
 kotlin {
